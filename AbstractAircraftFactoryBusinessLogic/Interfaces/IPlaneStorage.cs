@@ -1,0 +1,21 @@
+﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
+using AbstractAircraftFactoryBusinessLogic.ViewModels;
+using System.Collections.Generic;
+
+namespace AbstractAircraftFactoryBusinessLogic.Interfaces
+{
+    public interface IPlaneStorage
+    {
+        List<PlaneViewModel> GetFullList();
+
+        List<PlaneViewModel> GetFilteredList(PlaneBindingModel model);
+
+        PlaneViewModel GetElement(PlaneBindingModel model);
+
+        void Insert(PlaneBindingModel model);
+
+        void Update(PlaneBindingModel model);
+
+        void Delete(PlaneBindingModel model);
+    }
+}
