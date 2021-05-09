@@ -1,25 +1,29 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.BusinessLogics;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.BusinessLogics;
 using System;
 using System.Windows.Forms;
 using Unity;
 
-namespace AbstractAircraftFactoryView
+namespace AbstractJewelryShopView
 {
     public partial class FormMain : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
+
         private readonly OrderLogic _orderLogic;
+
         public FormMain(OrderLogic orderLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
         }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void LoadData()
         {
             try
@@ -47,7 +51,7 @@ namespace AbstractAircraftFactoryView
 
         private void СамолетыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPlanes>();
+            var form = Container.Resolve<FormJewels>();
             form.ShowDialog();
         }
 

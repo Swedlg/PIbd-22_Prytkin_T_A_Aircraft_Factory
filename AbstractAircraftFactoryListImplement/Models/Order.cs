@@ -1,7 +1,7 @@
-﻿using AbstractAircraftFactoryBusinessLogic.Enums;
+﻿using AbstractJewelryShopBusinessLogic.Enums;
 using System;
 
-namespace AbstractAircraftFactoryListImplement.Models
+namespace AbstractJewelryShopListImplement.Models
 {
     /// <summary>
     /// Заказ
@@ -10,7 +10,7 @@ namespace AbstractAircraftFactoryListImplement.Models
     {
         public int Id { get; set; }
 
-        public int PlaneId { get; set; }
+        public int JewelId { get; set; }
 
         public int Count { get; set; }
 

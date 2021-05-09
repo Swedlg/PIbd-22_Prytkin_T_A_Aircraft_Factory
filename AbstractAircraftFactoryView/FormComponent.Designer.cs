@@ -1,4 +1,4 @@
-﻿namespace AbstractAircraftFactoryView
+﻿namespace AbstractJewelryShopView
 {
     partial class FormComponent
     {
@@ -37,24 +37,27 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(12, 9);
+            this.labelName.Location = new System.Drawing.Point(18, 14);
+            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(60, 13);
+            this.labelName.Size = new System.Drawing.Size(87, 20);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "Название:";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(78, 6);
+            this.textBoxName.Location = new System.Drawing.Point(117, 9);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(178, 20);
+            this.textBoxName.Size = new System.Drawing.Size(265, 26);
             this.textBoxName.TabIndex = 1;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(12, 32);
+            this.buttonSave.Location = new System.Drawing.Point(18, 49);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(113, 26);
+            this.buttonSave.Size = new System.Drawing.Size(170, 40);
             this.buttonSave.TabIndex = 2;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -62,9 +65,10 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(143, 32);
+            this.buttonCancel.Location = new System.Drawing.Point(214, 49);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(113, 26);
+            this.buttonCancel.Size = new System.Drawing.Size(170, 40);
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -72,15 +76,16 @@
             // 
             // FormComponent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(269, 69);
+            this.ClientSize = new System.Drawing.Size(404, 106);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormComponent";
-            this.Text = "Компонент";
+            this.Text = "Форма компонента";
             this.Load += new System.EventHandler(this.FormComponent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

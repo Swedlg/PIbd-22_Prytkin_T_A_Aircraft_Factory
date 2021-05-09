@@ -1,10 +1,10 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.BusinessLogics;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.BusinessLogics;
 using System;
 using System.Windows.Forms;
 using Unity;
 
-namespace AbstractAircraftFactoryView
+namespace AbstractJewelryShopView
 {
     public partial class FormComponents : Form
     {
@@ -57,9 +57,6 @@ namespace AbstractAircraftFactoryView
             {
                 var form = Container.Resolve<FormComponent>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                //form.Name
-
-                //form.
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();

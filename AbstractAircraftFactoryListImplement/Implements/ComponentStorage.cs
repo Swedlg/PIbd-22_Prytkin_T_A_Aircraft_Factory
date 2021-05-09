@@ -1,11 +1,11 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.Interfaces;
-using AbstractAircraftFactoryBusinessLogic.ViewModels;
-using AbstractAircraftFactoryListImplement.Models;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.Interfaces;
+using AbstractJewelryShopBusinessLogic.ViewModels;
+using AbstractJewelryShopListImplement.Models;
 using System;
 using System.Collections.Generic;
 
-namespace AbstractAircraftFactoryListImplement.Implements
+namespace AbstractJewelryShopListImplement.Implements
 {
     public class ComponentStorage : IComponentStorage
     {
@@ -25,6 +25,7 @@ namespace AbstractAircraftFactoryListImplement.Implements
             }
             return result;
         }
+
         public List<ComponentViewModel> GetFilteredList(ComponentBindingModel model)
         {
             if (model == null)
@@ -72,7 +73,6 @@ namespace AbstractAircraftFactoryListImplement.Implements
 
         public void Update(ComponentBindingModel model)
         {
-            
             Component tempComponent = null;
             foreach (var component in source.Components)
             {

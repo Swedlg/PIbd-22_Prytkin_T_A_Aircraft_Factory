@@ -1,13 +1,13 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BusinessLogics;
-using AbstractAircraftFactoryBusinessLogic.ViewModels;
+﻿using AbstractJewelryShopBusinessLogic.BusinessLogics;
+using AbstractJewelryShopBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Unity;
 
-namespace AbstractAircraftFactoryView
+namespace AbstractJewelryShopView
 {
-    public partial class FormPlaneComponent : Form
+    public partial class FormJewelComponent : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
@@ -18,7 +18,7 @@ namespace AbstractAircraftFactoryView
 
         public int Count { get { return Convert.ToInt32(textBoxCount.Text); } set { textBoxCount.Text = value.ToString(); } }
 
-        public FormPlaneComponent(ComponentLogic logic)
+        public FormJewelComponent(ComponentLogic logic)
         {
             InitializeComponent();
             List<ComponentViewModel> list = logic.Read(null);

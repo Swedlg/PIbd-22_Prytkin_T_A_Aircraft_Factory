@@ -1,38 +1,39 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.BusinessLogics;
-using AbstractAircraftFactoryBusinessLogic.ViewModels;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.BusinessLogics;
+using AbstractJewelryShopBusinessLogic.ViewModels;
 using System;
 using System.Windows.Forms;
 using Unity;
 
-namespace AbstractAircraftFactoryView
+namespace AbstractJewelryShopView
 {
     public partial class FormCreateOrder : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly PlaneLogic _logicP;
+        private readonly JewelLogic _jewelLogic;
 
-        private readonly OrderLogic _logicO;
-        public FormCreateOrder(PlaneLogic logicP, OrderLogic logicO)
+        private readonly OrderLogic _orderLogic;
+
+        public FormCreateOrder(JewelLogic jewelLogic, OrderLogic orderLogic)
         {
             InitializeComponent();
-            _logicP = logicP;
-            _logicO = logicO;
+            _jewelLogic = jewelLogic;
+            _orderLogic = orderLogic;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                var listOfPlanes = _logicP.Read(null);
-                if (listOfPlanes != null)
+                var listOfJewels = _jewelLogic.Read(null);
+                if (listOfJewels != null)
                 {
-                    comboBoxPlane.DataSource = listOfPlanes;
-                    comboBoxPlane.DisplayMember = "PlaneName";
-                    comboBoxPlane.ValueMember = "Id";
-                    comboBoxPlane.SelectedItem = null;
+                    comboBoxJewel.DataSource = listOfJewels;
+                    comboBoxJewel.DisplayMember = "JewelName";
+                    comboBoxJewel.ValueMember = "Id";
+                    comboBoxJewel.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -43,18 +44,14 @@ namespace AbstractAircraftFactoryView
 
         private void CalcSum()
         {
-            if (comboBoxPlane.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
+            if (comboBoxJewel.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
             {
                 try
                 {
-
-                    //MessageBox.Show("Все норм");
-
-
-                    int id = Convert.ToInt32(comboBoxPlane.SelectedValue);
-                    PlaneViewModel plane = _logicP.Read(new PlaneBindingModel { Id = id })?[0];
+                    int id = Convert.ToInt32(comboBoxJewel.SelectedValue);
+                    JewelViewModel jewel = _jewelLogic.Read(new JewelBindingModel { Id = id })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * plane?.Price ?? 0).ToString();
+                    textBoxSum.Text = (count * jewel?.Price ?? 0).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -62,12 +59,13 @@ namespace AbstractAircraftFactoryView
                 }
             }
         }
+
         private void TextBoxCount_TextChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
 
-        private void ComboBoxPlane_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxJewel_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -79,16 +77,16 @@ namespace AbstractAircraftFactoryView
                 MessageBox.Show("Заполните поле Количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxPlane.SelectedValue == null)
+            if (comboBoxJewel.SelectedValue == null)
             {
-                MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Выберите украшение", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                _logicO.CreateOrder(new CreateOrderBindingModel
+                _orderLogic.CreateOrder(new CreateOrderBindingModel
                 {
-                    PlaneId = Convert.ToInt32(comboBoxPlane.SelectedValue),
+                    JewelId = Convert.ToInt32(comboBoxJewel.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

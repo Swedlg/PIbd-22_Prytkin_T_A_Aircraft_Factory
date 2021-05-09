@@ -1,7 +1,7 @@
-﻿using AbstractAircraftFactoryListImplement.Models;
+﻿using AbstractJewelryShopListImplement.Models;
 using System.Collections.Generic;
 
-namespace AbstractAircraftFactoryListImplement
+namespace AbstractJewelryShopListImplement
 {
     public class DataListSingleton
     {
@@ -11,14 +11,15 @@ namespace AbstractAircraftFactoryListImplement
 
         public List<Order> Orders { get; set; }
 
-        public List<Plane> Planes { get; set; }
+        public List<Jewel> Jewels { get; set; }
 
         private DataListSingleton()
         {
             Components = new List<Component>();
             Orders = new List<Order>();
-            Planes = new List<Plane>();
+            Jewels = new List<Jewel>();
         }
+
         public static DataListSingleton GetInstance()
         {
             if (instance == null)

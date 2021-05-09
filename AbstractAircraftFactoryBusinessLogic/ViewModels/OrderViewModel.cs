@@ -1,8 +1,8 @@
-﻿using AbstractAircraftFactoryBusinessLogic.Enums;
+﻿using AbstractJewelryShopBusinessLogic.Enums;
 using System;
 using System.ComponentModel;
 
-namespace AbstractAircraftFactoryBusinessLogic.ViewModels
+namespace AbstractJewelryShopBusinessLogic.ViewModels
 {
     /// <summary>
     /// Заказ
@@ -10,10 +10,10 @@ namespace AbstractAircraftFactoryBusinessLogic.ViewModels
     public class OrderViewModel
     {
         public int Id { get; set; }
-        public int PlaneId { get; set; }
+        public int JewelId { get; set; }
 
-        [DisplayName("Самолет")]
-        public string PlaneName { get; set; }
+        [DisplayName("Украшение")]
+        public string JewelName { get; set; }
 
         [DisplayName("Количество")]
         public int Count { get; set; }

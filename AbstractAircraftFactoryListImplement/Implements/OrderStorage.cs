@@ -1,12 +1,12 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.Interfaces;
-using AbstractAircraftFactoryBusinessLogic.ViewModels;
-using AbstractAircraftFactoryListImplement.Models;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.Interfaces;
+using AbstractJewelryShopBusinessLogic.ViewModels;
+using AbstractJewelryShopListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AbstractAircraftFactoryListImplement.Implements
+namespace AbstractJewelryShopListImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
@@ -52,7 +52,7 @@ namespace AbstractAircraftFactoryListImplement.Implements
             }
             foreach (var order in source.Orders)
             {
-                if (order.Id == model.Id || order.PlaneId == model.PlaneId)
+                if (order.Id == model.Id || order.JewelId == model.JewelId)
                 {
                     return CreateModel(order);
                 }
@@ -105,7 +105,7 @@ namespace AbstractAircraftFactoryListImplement.Implements
 
         private Order CreateModel(OrderBindingModel model, Order order)
         {
-            order.PlaneId = model.PlaneId;
+            order.JewelId = model.JewelId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -116,19 +116,19 @@ namespace AbstractAircraftFactoryListImplement.Implements
 
         private OrderViewModel CreateModel(Order order)
         {
-            string planeName = null;
-            foreach (var plane in source.Planes)
+            string jewelName = null;
+            foreach (var jewel in source.Jewels)
             {
-                if (plane.Id == order.PlaneId)
+                if (jewel.Id == order.JewelId)
                 {
-                    planeName = plane.PlaneName;
+                    jewelName = jewel.JewelName;
                 }
             }
             return new OrderViewModel
             {
                 Id = order.Id,
-                PlaneId = order.PlaneId,
-                PlaneName = planeName,
+                JewelId = order.JewelId,
+                JewelName = jewelName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

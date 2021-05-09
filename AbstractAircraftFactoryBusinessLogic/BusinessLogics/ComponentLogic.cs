@@ -1,10 +1,10 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.Interfaces;
-using AbstractAircraftFactoryBusinessLogic.ViewModels;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.Interfaces;
+using AbstractJewelryShopBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 
-namespace AbstractAircraftFactoryBusinessLogic.BusinessLogics
+namespace AbstractJewelryShopBusinessLogic.BusinessLogics
 {
     public class ComponentLogic
     {

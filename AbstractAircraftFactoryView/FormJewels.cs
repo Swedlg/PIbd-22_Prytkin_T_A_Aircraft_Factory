@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Windows.Forms;
-using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.BusinessLogics;
+using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.BusinessLogics;
 using Unity;
 
-namespace AbstractAircraftFactoryView
+namespace AbstractJewelryShopView
 {
-    public partial class FormPlanes : Form
+    public partial class FormJewels : Form
     {
 
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly PlaneLogic logic;
-        public FormPlanes(PlaneLogic logic)
+
+        private readonly JewelLogic logic;
+
+        public FormJewels(JewelLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
+
         private void FormPlanes_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -43,7 +46,7 @@ namespace AbstractAircraftFactoryView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPlane>();
+            var form = Container.Resolve<FormJewel>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -72,7 +75,7 @@ namespace AbstractAircraftFactoryView
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        logic.Delete(new PlaneBindingModel { Id = id });
+                        logic.Delete(new JewelBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

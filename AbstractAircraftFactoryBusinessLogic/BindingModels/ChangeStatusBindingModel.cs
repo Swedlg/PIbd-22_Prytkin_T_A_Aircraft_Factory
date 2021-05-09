@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AbstractAircraftFactoryBusinessLogic.BindingModels
+﻿namespace AbstractJewelryShopBusinessLogic.BindingModels
 {
     /// <summary>
     /// Данные для смены статуса заказа

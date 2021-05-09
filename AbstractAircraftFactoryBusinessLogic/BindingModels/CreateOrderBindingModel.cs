@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AbstractAircraftFactoryBusinessLogic.BindingModels
+﻿namespace AbstractJewelryShopBusinessLogic.BindingModels
 {
     /// <summary>
     /// Данные от клиента, для создания заказа
     /// </summary>
     public class CreateOrderBindingModel
     {
-        public int PlaneId { get; set; }
+        public int JewelId { get; set; }
 
         public int Count { get; set; }
 

@@ -1,21 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace AbstractAircraftFactoryBusinessLogic.ViewModels
+namespace AbstractJewelryShopBusinessLogic.ViewModels
 {
     /// <summary>
     /// Самолет, изготавливаемый на заводе
     /// </summary>
-    public class PlaneViewModel
+    public class JewelViewModel
     {
         public int Id { get; set; }
 
-        [DisplayName("Название самолета")]
-        public string PlaneName { get; set; }
+        [DisplayName("Название украшения")]
+        public string JewelName { get; set; }
 
         [DisplayName("Цена")]
         public decimal Price { get; set; }
 
-        public Dictionary<int, (string, int)> PlaneComponents { get; set; }
+        public Dictionary<int, (string, int)> JewelComponents { get; set; }
     }
 }

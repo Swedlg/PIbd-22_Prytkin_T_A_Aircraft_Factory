@@ -1,11 +1,11 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.Enums;
-using AbstractAircraftFactoryBusinessLogic.Interfaces;
-using AbstractAircraftFactoryBusinessLogic.ViewModels;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.Enums;
+using AbstractJewelryShopBusinessLogic.Interfaces;
+using AbstractJewelryShopBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 
-namespace AbstractAircraftFactoryBusinessLogic.BusinessLogics
+namespace AbstractJewelryShopBusinessLogic.BusinessLogics
 {
     public class OrderLogic
     {
@@ -33,7 +33,7 @@ namespace AbstractAircraftFactoryBusinessLogic.BusinessLogics
         {
             _orderStorage.Insert(new OrderBindingModel
             {
-                PlaneId = model.PlaneId,
+                JewelId = model.JewelId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -55,7 +55,7 @@ namespace AbstractAircraftFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
-                PlaneId = order.PlaneId,
+                JewelId = order.JewelId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -78,7 +78,7 @@ namespace AbstractAircraftFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
-                PlaneId = order.PlaneId,
+                JewelId = order.JewelId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -101,7 +101,7 @@ namespace AbstractAircraftFactoryBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
-                PlaneId = order.PlaneId,
+                JewelId = order.JewelId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

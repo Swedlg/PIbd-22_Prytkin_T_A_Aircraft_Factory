@@ -1,8 +1,8 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.ViewModels;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.ViewModels;
 using System.Collections.Generic;
 
-namespace AbstractAircraftFactoryBusinessLogic.Interfaces
+namespace AbstractJewelryShopBusinessLogic.Interfaces
 {
     public interface IOrderStorage
     {

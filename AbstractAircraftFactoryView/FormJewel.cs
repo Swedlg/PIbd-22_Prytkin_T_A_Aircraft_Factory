@@ -1,38 +1,44 @@
-﻿using AbstractAircraftFactoryBusinessLogic.BindingModels;
-using AbstractAircraftFactoryBusinessLogic.BusinessLogics;
-using AbstractAircraftFactoryBusinessLogic.ViewModels;
+﻿using AbstractJewelryShopBusinessLogic.BindingModels;
+using AbstractJewelryShopBusinessLogic.BusinessLogics;
+using AbstractJewelryShopBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Unity;
 
-namespace AbstractAircraftFactoryView
+namespace AbstractJewelryShopView
 {
-    public partial class FormPlane : Form
+    public partial class FormJewel : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
+
         public int Id { set { id = value; } }
-        private readonly PlaneLogic logic;
+
+        private readonly JewelLogic logic;
+
         private int? id;
-        private Dictionary<int, (string, int)> planeComponents = new Dictionary<int, (string, int)>();
-        public FormPlane(PlaneLogic service)
+
+        private Dictionary<int, (string, int)> jewelComponents = new Dictionary<int, (string, int)>();
+        
+        public FormJewel(JewelLogic service)
         {
             InitializeComponent();
             this.logic = service;
         }
-        private void FormPlane_Load(object sender, EventArgs e)
+
+        private void FormJewel_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    PlaneViewModel view = logic.Read(new PlaneBindingModel { Id = id.Value })?[0];
+                    JewelViewModel view = logic.Read(new JewelBindingModel { Id = id.Value })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.PlaneName;
+                        textBoxName.Text = view.JewelName;
                         textBoxPrice.Text = view.Price.ToString();
-                        planeComponents = view.PlaneComponents;
+                        jewelComponents = view.JewelComponents;
                         LoadData();
                     }
                 }
@@ -40,21 +46,20 @@ namespace AbstractAircraftFactoryView
             }
             else
             {
-                planeComponents = new Dictionary<int, (string, int)>();
+                jewelComponents = new Dictionary<int, (string, int)>();
             }
         }
+
         private void LoadData()
         {
             try
             {
-                if (planeComponents != null)
+                if (jewelComponents != null)
                 {
                     dataGridView.Rows.Clear();
-                    foreach (var dc in planeComponents)
+                    foreach (var component in jewelComponents)
                     {
-                        dataGridView.Rows.Add(new object[]
-                        {
-                            dc.Key, dc.Value.Item1, dc.Value.Item2 });
+                        dataGridView.Rows.Add(new object[] { component.Key, component.Value.Item1, component.Value.Item2 });
                     }
                 }
             }
@@ -63,18 +68,19 @@ namespace AbstractAircraftFactoryView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPlaneComponent>();
+            var form = Container.Resolve<FormJewelComponent>();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (planeComponents.ContainsKey(form.Id))
+                if (jewelComponents.ContainsKey(form.Id))
                 {
-                    planeComponents[form.Id] = (form.ComponentName, form.Count);
+                    jewelComponents[form.Id] = (form.ComponentName, form.Count);
                 }
                 else
                 {
-                    planeComponents.Add(form.Id, (form.ComponentName, form.Count));
+                    jewelComponents.Add(form.Id, (form.ComponentName, form.Count));
                 }
                 LoadData();
             }
@@ -84,17 +90,18 @@ namespace AbstractAircraftFactoryView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormPlaneComponent>();
+                var form = Container.Resolve<FormJewelComponent>();
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 form.Id = id;
-                form.Count = planeComponents[id].Item2;
+                form.Count = jewelComponents[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    planeComponents[form.Id] = (form.ComponentName, form.Count);
+                    jewelComponents[form.Id] = (form.ComponentName, form.Count);
                     LoadData();
                 }
             }
         }
+
         private void ButtonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -103,7 +110,7 @@ namespace AbstractAircraftFactoryView
                 {
                     try
                     {
-                        planeComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+                        jewelComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
                     }
                     catch (Exception ex)
                     {
@@ -113,10 +120,12 @@ namespace AbstractAircraftFactoryView
                 }
             }
         }
+
         private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
@@ -129,19 +138,19 @@ namespace AbstractAircraftFactoryView
                 MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (planeComponents == null || planeComponents.Count == 0)
+            if (jewelComponents == null || jewelComponents.Count == 0)
             {
                 MessageBox.Show("Заполните компоненты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                logic.CreateOrUpdate(new PlaneBindingModel
+                logic.CreateOrUpdate(new JewelBindingModel
                 {
                     Id = id,
-                    PlaneName = textBoxName.Text,
+                    JewelName = textBoxName.Text,
                     Price = Convert.ToDecimal(textBoxPrice.Text),
-                    PlaneComponents = planeComponents
+                    JewelComponents = jewelComponents
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
@@ -152,6 +161,7 @@ namespace AbstractAircraftFactoryView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

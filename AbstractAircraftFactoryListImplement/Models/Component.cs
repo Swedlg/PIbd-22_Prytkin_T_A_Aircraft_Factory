@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AbstractAircraftFactoryListImplement.Models
+﻿namespace AbstractJewelryShopListImplement.Models
 {
     /// <summary>
     /// Компонент, требуемый для изготовления изделия
@@ -10,6 +6,7 @@ namespace AbstractAircraftFactoryListImplement.Models
     public class Component
     {
         public int Id { get; set; }
+
         public string ComponentName { get; set; }
     }
 }

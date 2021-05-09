@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AbstractAircraftFactoryBusinessLogic.Enums
+﻿namespace AbstractJewelryShopBusinessLogic.Enums
 {
     public enum OrderStatus
     {

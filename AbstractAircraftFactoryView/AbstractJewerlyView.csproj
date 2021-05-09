@@ -79,23 +79,23 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPlane.cs">
+    <Compile Include="FormJewel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPlane.Designer.cs">
-      <DependentUpon>FormPlane.cs</DependentUpon>
+    <Compile Include="FormJewel.Designer.cs">
+      <DependentUpon>FormJewel.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPlaneComponent.cs">
+    <Compile Include="FormJewelComponent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPlaneComponent.Designer.cs">
-      <DependentUpon>FormPlaneComponent.cs</DependentUpon>
+    <Compile Include="FormJewelComponent.Designer.cs">
+      <DependentUpon>FormJewelComponent.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPlanes.cs">
+    <Compile Include="FormJewels.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPlanes.Designer.cs">
-      <DependentUpon>FormPlanes.cs</DependentUpon>
+    <Compile Include="FormJewels.Designer.cs">
+      <DependentUpon>FormJewels.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,14 +111,14 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPlane.resx">
-      <DependentUpon>FormPlane.cs</DependentUpon>
+    <EmbeddedResource Include="FormJewel.resx">
+      <DependentUpon>FormJewel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPlaneComponent.resx">
-      <DependentUpon>FormPlaneComponent.cs</DependentUpon>
+    <EmbeddedResource Include="FormJewelComponent.resx">
+      <DependentUpon>FormJewelComponent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPlanes.resx">
-      <DependentUpon>FormPlanes.cs</DependentUpon>
+    <EmbeddedResource Include="FormJewels.resx">
+      <DependentUpon>FormJewels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -144,13 +144,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractAircraftFactoryBusinessLogic\AbstractAircraftFactoryBusinessLogic.csproj">
+    <ProjectReference Include="..\AbstractAircraftFactoryBusinessLogic\AbstractJewelryShopBusinessLogic.csproj">
       <Project>{bf13a202-07c5-46ca-bea8-8b4dba97ce0a}</Project>
-      <Name>AbstractAircraftFactoryBusinessLogic</Name>
+      <Name>AbstractJewelryShopBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractAircraftFactoryListImplement\AbstractAircraftFactoryListImplement.csproj">
+    <ProjectReference Include="..\AbstractAircraftFactoryListImplement\AbstractJewelryShopListImplement.csproj">
       <Project>{69af16b7-aa67-42c0-a89e-4dea88279f9d}</Project>
-      <Name>AbstractAircraftFactoryListImplement</Name>
+      <Name>AbstractJewelryShopListImplement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

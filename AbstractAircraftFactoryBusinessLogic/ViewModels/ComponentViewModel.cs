@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace AbstractAircraftFactoryBusinessLogic.ViewModels
+namespace AbstractJewelryShopBusinessLogic.ViewModels
 {
     /// <summary>
     /// Компонент, требуемый для изготовления самолета

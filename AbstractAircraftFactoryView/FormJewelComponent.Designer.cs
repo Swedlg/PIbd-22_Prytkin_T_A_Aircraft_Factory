@@ -1,6 +1,6 @@
-﻿namespace AbstractAircraftFactoryView
+﻿namespace AbstractJewelryShopView
 {
-    partial class FormPlaneComponent
+    partial class FormJewelComponent
     {
         /// <summary>
         /// Required designer variable.
@@ -39,41 +39,46 @@
             // labelComponent
             // 
             this.labelComponent.AutoSize = true;
-            this.labelComponent.Location = new System.Drawing.Point(12, 9);
+            this.labelComponent.Location = new System.Drawing.Point(18, 14);
+            this.labelComponent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelComponent.Name = "labelComponent";
-            this.labelComponent.Size = new System.Drawing.Size(66, 13);
+            this.labelComponent.Size = new System.Drawing.Size(97, 20);
             this.labelComponent.TabIndex = 0;
             this.labelComponent.Text = "Компонент:";
             // 
             // labelCount
             // 
             this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(12, 41);
+            this.labelCount.Location = new System.Drawing.Point(18, 63);
+            this.labelCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCount.Name = "labelCount";
-            this.labelCount.Size = new System.Drawing.Size(69, 13);
+            this.labelCount.Size = new System.Drawing.Size(104, 20);
             this.labelCount.TabIndex = 1;
             this.labelCount.Text = "Количество:";
             // 
             // comboBoxComponent
             // 
             this.comboBoxComponent.FormattingEnabled = true;
-            this.comboBoxComponent.Location = new System.Drawing.Point(87, 6);
+            this.comboBoxComponent.Location = new System.Drawing.Point(130, 9);
+            this.comboBoxComponent.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxComponent.Name = "comboBoxComponent";
-            this.comboBoxComponent.Size = new System.Drawing.Size(235, 21);
+            this.comboBoxComponent.Size = new System.Drawing.Size(350, 28);
             this.comboBoxComponent.TabIndex = 2;
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(87, 38);
+            this.textBoxCount.Location = new System.Drawing.Point(130, 58);
+            this.textBoxCount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.Size = new System.Drawing.Size(235, 20);
+            this.textBoxCount.Size = new System.Drawing.Size(350, 26);
             this.textBoxCount.TabIndex = 3;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(12, 64);
+            this.buttonSave.Location = new System.Drawing.Point(18, 98);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(143, 29);
+            this.buttonSave.Size = new System.Drawing.Size(214, 45);
             this.buttonSave.TabIndex = 4;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -81,27 +86,29 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(161, 64);
+            this.buttonCancel.Location = new System.Drawing.Point(242, 98);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(161, 29);
+            this.buttonCancel.Size = new System.Drawing.Size(242, 45);
             this.buttonCancel.TabIndex = 5;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
-            // FormPlaneComponent
+            // FormJewelComponent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 103);
+            this.ClientSize = new System.Drawing.Size(501, 158);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.comboBoxComponent);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.labelComponent);
-            this.Name = "FormPlaneComponent";
-            this.Text = "FormPlaneComponent";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "FormJewelComponent";
+            this.Text = "Форма компонентов украшения";
             this.ResumeLayout(false);
             this.PerformLayout();
 
