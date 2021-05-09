@@ -144,11 +144,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractAircraftFactoryBusinessLogic\AbstractJewelryShopBusinessLogic.csproj">
+    <ProjectReference Include="..\AbstractJewelryShopBusinessLogic\AbstractJewelryShopBusinessLogic.csproj">
       <Project>{bf13a202-07c5-46ca-bea8-8b4dba97ce0a}</Project>
       <Name>AbstractJewelryShopBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractAircraftFactoryListImplement\AbstractJewelryShopListImplement.csproj">
+    <ProjectReference Include="..\AbstractJewelryShopListImplement\AbstractJewelryShopListImplement.csproj">
       <Project>{69af16b7-aa67-42c0-a89e-4dea88279f9d}</Project>
       <Name>AbstractJewelryShopListImplement</Name>
     </ProjectReference>
