@@ -8,7 +8,7 @@ namespace AbstractJewelryShopBusinessLogic.ViewModels
     /// </summary>
     public class JewelViewModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [DisplayName("Название украшения")]
         public string JewelName { get; set; }

@@ -1,6 +1,6 @@
 ﻿using AbstractJewelryShopBusinessLogic.BusinessLogics;
 using AbstractJewelryShopBusinessLogic.Interfaces;
-using AbstractJewerlyShopFileImplement.Implements;
+using AbstractJewerlyShopDatabaseImplement.Implements;
 using System;
 using System.Windows.Forms;
 using Unity;
