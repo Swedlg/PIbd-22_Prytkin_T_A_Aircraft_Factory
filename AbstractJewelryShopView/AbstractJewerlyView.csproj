@@ -152,6 +152,10 @@
       <Project>{69af16b7-aa67-42c0-a89e-4dea88279f9d}</Project>
       <Name>AbstractJewelryShopListImplement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AbstractJewerlyShopFileImplement\AbstractJewerlyShopFileImplement.csproj">
+      <Project>{b464d4dc-e4af-40e4-84d7-02dca75ebcc0}</Project>
+      <Name>AbstractJewerlyShopFileImplement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
