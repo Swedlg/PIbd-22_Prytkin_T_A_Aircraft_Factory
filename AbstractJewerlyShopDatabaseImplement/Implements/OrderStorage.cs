@@ -42,7 +42,10 @@ namespace AbstractJewerlyShopDatabaseImplement.Implements
             {
                 return context.Orders
                     .Include(rec => rec.Jewel)
-                    .Where(rec => rec.Id.Equals(model.Id))
+                    .Where(rec =>
+                        model.DateFrom.HasValue && model.DateTo.HasValue &&
+                        rec.DateCreate.Date >= model.DateFrom.Value.Date &&
+                        rec.DateCreate.Date <= model.DateTo.Value.Date)
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
