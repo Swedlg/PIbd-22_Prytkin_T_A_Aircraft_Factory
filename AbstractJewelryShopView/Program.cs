@@ -28,9 +28,11 @@ namespace AbstractJewelryShopView
             currentContainer.RegisterType<IComponentStorage, ComponentStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IJewelStorage, JewelStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWarehouseStorage, WarehouseStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<JewelLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<WarehouseLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
