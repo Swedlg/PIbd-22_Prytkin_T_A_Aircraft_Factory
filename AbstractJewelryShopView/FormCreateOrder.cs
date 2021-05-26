@@ -84,6 +84,8 @@ namespace AbstractJewelryShopView
             }
             try
             {
+                //Console.WriteLine(comboBoxJewel.SelectedValue);
+
                 _orderLogic.CreateOrder(new CreateOrderBindingModel
                 {
                     JewelId = Convert.ToInt32(comboBoxJewel.SelectedValue),

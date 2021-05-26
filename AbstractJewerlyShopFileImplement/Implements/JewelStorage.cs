@@ -46,7 +46,7 @@ namespace AbstractJewerlyShopFileImplement.Implements
         public void Insert(JewelBindingModel model)
         {
 
-            int maxId = source.Jewels.Count > 0 ? source.Components.Max(rec => rec.Id) : 0;
+            int maxId = source.Jewels.Count > 0 ? source.Jewels.Max(rec => rec.Id) : 0;
             var element = new Jewel
             {
                 Id = maxId + 1,
@@ -82,6 +82,7 @@ namespace AbstractJewerlyShopFileImplement.Implements
         {
             jewel.JewelName = model.JewelName;
             jewel.Price = model.Price;
+
             // удаляем убранные
             foreach (var key in jewel.JewelComponents.Keys.ToList())
             {
@@ -90,13 +91,13 @@ namespace AbstractJewerlyShopFileImplement.Implements
                     jewel.JewelComponents.Remove(key);
                 }
             }
+
             // обновляем существуюущие и добавляем новые
             foreach (var component in model.JewelComponents)
             {
                 if (jewel.JewelComponents.ContainsKey(component.Key))
                 {
-                    jewel.JewelComponents[component.Key] =
-                    model.JewelComponents[component.Key].Item2;
+                    jewel.JewelComponents[component.Key] = model.JewelComponents[component.Key].Item2;
                 }
                 else
                 {
