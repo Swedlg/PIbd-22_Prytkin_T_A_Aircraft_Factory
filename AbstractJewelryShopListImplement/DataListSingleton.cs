@@ -13,11 +13,14 @@ namespace AbstractJewelryShopListImplement
 
         public List<Jewel> Jewels { get; set; }
 
+        public List<Warehouse> Warehouses { get; set; }
+
         private DataListSingleton()
         {
             Components = new List<Component>();
             Orders = new List<Order>();
             Jewels = new List<Jewel>();
+            Warehouses = new List<Warehouse>();
         }
 
         public static DataListSingleton GetInstance()

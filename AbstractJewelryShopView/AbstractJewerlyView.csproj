@@ -97,6 +97,24 @@
     <Compile Include="FormJewels.Designer.cs">
       <DependentUpon>FormJewels.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWarehouse.Designer.cs">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWarehouseReplenishment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWarehouseReplenishment.Designer.cs">
+      <DependentUpon>FormWarehouseReplenishment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWarehouses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWarehouses.Designer.cs">
+      <DependentUpon>FormWarehouses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormComponent.resx">
@@ -119,6 +137,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormJewels.resx">
       <DependentUpon>FormJewels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWarehouse.resx">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWarehouseReplenishment.resx">
+      <DependentUpon>FormWarehouseReplenishment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWarehouses.resx">
+      <DependentUpon>FormWarehouses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
