@@ -36,9 +36,16 @@ namespace AbstractJewelryShopView
                 if (listOfOrder != null)
                 {
                     dataGridView.DataSource = listOfOrder;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[0].Visible = false;//ID
+                    dataGridView.Columns[1].Visible = false;//ID украшения
+                    dataGridView.Columns[2].Visible = true;
+                    dataGridView.Columns[3].Visible = false;//ID клиента
+                    dataGridView.Columns[4].Visible = true;
+                    dataGridView.Columns[5].Visible = true;
+                    dataGridView.Columns[6].Visible = true;
+                    dataGridView.Columns[7].Visible = true;
+                    dataGridView.Columns[8].Visible = true;
+                    dataGridView.Columns[9].Visible = true;    
                 }
             }
             catch (Exception ex)
@@ -146,6 +153,12 @@ namespace AbstractJewelryShopView
         private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
+        }
+
+        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormClients>();
             form.ShowDialog();
         }
     }

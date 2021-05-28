@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractJewelryShopBusiness
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractJewelryShopListImplement", "AbstractJewelryShopListImplement\AbstractJewelryShopListImplement.csproj", "{69AF16B7-AA67-42C0-A89E-4DEA88279F9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractJewerlyShopFileImplement", "AbstractJewerlyShopFileImplement\AbstractJewerlyShopFileImplement.csproj", "{B464D4DC-E4AF-40E4-84D7-02DCA75EBCC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractJewerlyShopFileImplement", "AbstractJewerlyShopFileImplement\AbstractJewerlyShopFileImplement.csproj", "{B464D4DC-E4AF-40E4-84D7-02DCA75EBCC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractJewerlyShopDatabaseImplement", "AbstractJewerlyShopDatabaseImplement\AbstractJewerlyShopDatabaseImplement.csproj", "{6EEDA102-182E-4A62-9943-D6DE88D022CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractJewerlyShopDatabaseImplement", "AbstractJewerlyShopDatabaseImplement\AbstractJewerlyShopDatabaseImplement.csproj", "{6EEDA102-182E-4A62-9943-D6DE88D022CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractJewerlyShopRestApi", "AbstractJewerlyShopRestApi\AbstractJewerlyShopRestApi.csproj", "{BD981DE8-BD97-4C3C-99A9-222FA0F80B6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbsctractJewerlyShopClientApp", "AbsctractJewerlyShopClientApp\AbsctractJewerlyShopClientApp.csproj", "{2D372883-E8FC-421F-A37E-D86B53FBFA7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{6EEDA102-182E-4A62-9943-D6DE88D022CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EEDA102-182E-4A62-9943-D6DE88D022CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EEDA102-182E-4A62-9943-D6DE88D022CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD981DE8-BD97-4C3C-99A9-222FA0F80B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD981DE8-BD97-4C3C-99A9-222FA0F80B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD981DE8-BD97-4C3C-99A9-222FA0F80B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD981DE8-BD97-4C3C-99A9-222FA0F80B6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D372883-E8FC-421F-A37E-D86B53FBFA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D372883-E8FC-421F-A37E-D86B53FBFA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D372883-E8FC-421F-A37E-D86B53FBFA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D372883-E8FC-421F-A37E-D86B53FBFA7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

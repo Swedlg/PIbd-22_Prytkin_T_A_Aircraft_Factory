@@ -10,6 +10,8 @@ namespace AbstractJewerlyShopFileImplement.Models
     {
         public int Id { get; set; }
 
+        public int ClientId { get; set; }
+
         public int JewelId { get; set; }
 
         public int Count { get; set; }

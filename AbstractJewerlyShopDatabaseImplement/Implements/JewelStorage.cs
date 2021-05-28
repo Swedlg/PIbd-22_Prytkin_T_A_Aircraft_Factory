@@ -43,7 +43,7 @@ namespace AbstractJewerlyShopDatabaseImplement.Implements
                 return context.Jewels
                 .Include(rec => rec.JewelComponent)
                 .ThenInclude(rec => rec.Component)
-                .Where(rec => rec.JewelName.Contains(model.JewelName))
+                .Where(rec => rec.JewelName.Contains(model.JewelName)) 
                 .ToList()
                 .Select(rec => new JewelViewModel
                 {
