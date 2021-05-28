@@ -170,7 +170,7 @@ namespace AbstractJewerlyShopFileImplement.Implements
                     if (warehouse.WarehouseComponents.ContainsKey(neededComponent.Key))
                     {
                         //Если на складе точно не хватит компонентов 
-                        if (neededCount > warehouse.WarehouseComponents[neededComponent.Key].Item2)
+                        if (neededCount >= warehouse.WarehouseComponents[neededComponent.Key].Item2)
                         {
                             neededCount -= warehouse.WarehouseComponents[neededComponent.Key].Item2;
                             warehouse.WarehouseComponents.Remove(neededComponent.Key);
