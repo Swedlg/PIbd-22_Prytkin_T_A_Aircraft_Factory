@@ -22,5 +22,7 @@ namespace AbstractJewerlyShopDatabaseImplement
         public virtual DbSet<JewelComponent> JewelComponents { set; get; }
 
         public virtual DbSet<Order> Orders { set; get; }
+
+        public virtual DbSet<Client> Clients { set; get; }
     }
 }

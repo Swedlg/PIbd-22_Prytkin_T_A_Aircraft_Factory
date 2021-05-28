@@ -26,7 +26,9 @@ namespace AbstractJewerlyShopDatabaseImplement.Implements
                         Sum = rec.Sum,
                         Status = rec.Status,
                         DateCreate = rec.DateCreate,
-                        DateImplement = rec.DateImplement
+                        DateImplement = rec.DateImplement,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.ClientFIO
                     })
                     .ToList();
             }
@@ -42,10 +44,13 @@ namespace AbstractJewerlyShopDatabaseImplement.Implements
             {
                 return context.Orders
                     .Include(rec => rec.Jewel)
-                    .Where(rec =>
-                        model.DateFrom.HasValue && model.DateTo.HasValue &&
-                        rec.DateCreate.Date >= model.DateFrom.Value.Date &&
-                        rec.DateCreate.Date <= model.DateTo.Value.Date)
+                    .Include(rec => rec.Client)
+                    .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue
+                    && rec.DateCreate.Date == model.DateCreate.Date) ||
+                    (model.DateFrom.HasValue && model.DateTo.HasValue &&
+                    rec.DateCreate.Date >= model.DateFrom.Value.Date &&
+                    rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+                    (model.ClientId.HasValue && rec.ClientId == model.ClientId))
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
@@ -55,8 +60,10 @@ namespace AbstractJewerlyShopDatabaseImplement.Implements
                         Sum = rec.Sum,
                         Status = rec.Status,
                         DateCreate = rec.DateCreate,
-                        DateImplement = rec.DateImplement
-                })
+                        DateImplement = rec.DateImplement,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.ClientFIO
+                    })
                 .ToList();
             }
         }
@@ -82,7 +89,9 @@ namespace AbstractJewerlyShopDatabaseImplement.Implements
                         Sum = order.Sum,
                         Status = order.Status,
                         DateCreate = order.DateCreate,
-                        DateImplement = order.DateImplement
+                        DateImplement = order.DateImplement,
+                        ClientId = order.ClientId,
+                        ClientFIO = order.Client.ClientFIO  
                     } : null;
             }
         }
@@ -137,6 +146,7 @@ namespace AbstractJewerlyShopDatabaseImplement.Implements
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
+            order.ClientId = (int)model.ClientId;
             return order;
         }
     }

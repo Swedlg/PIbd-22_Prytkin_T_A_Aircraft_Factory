@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+<div class="text-center">
+    <h2 class="display-4">Создание заказа</h2>
+</div>
+<form method="post">
+    <div class="row">
+        <div class="col-4">Украшение:</div>
+        <div class="col-8">
+            <select id="jewel" name="jewel" class="form-control" asp-items="@(new SelectList(@ViewBag.Jewels,"Id", "JewelName"))">
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">Количество:</div>
+        <div class="col-8"><input type="text" name="count" id="count" /></div>
+    </div>
+    <div class="row">
+        <div class="col-4">Сумма:</div>
+        <div class="col-8">
+            <input type="text" id="sum" name="sum" readonly="true" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8">
+            <input type="submit" value="Создать" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<script>
+    $('#jewel').on('change', function () {
+        check();
+    });
+    $('#count').on('change', function () {
+        check();
+    });
+
+    function check() {
+        var count = $('#count').val();
+        var jewel = $('#jewel').val();
+        if (count && jewel) {
+            $.ajax({
+                method: "POST",
+                url: "/Home/Calc",
+                data: { count: count, jewel: jewel },
+                success: function (result) {
+                    $("#sum").val(result);
+                }
+            });
+        };
+    }
+</script>

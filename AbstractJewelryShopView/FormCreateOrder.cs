@@ -16,11 +16,14 @@ namespace AbstractJewelryShopView
 
         private readonly OrderLogic _orderLogic;
 
-        public FormCreateOrder(JewelLogic jewelLogic, OrderLogic orderLogic)
+        private readonly ClientLogic _clientLogic;
+
+        public FormCreateOrder(JewelLogic jewelLogic, OrderLogic orderLogic, ClientLogic clientLogic)
         {
             InitializeComponent();
             _jewelLogic = jewelLogic;
             _orderLogic = orderLogic;
+            _clientLogic = clientLogic;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
@@ -34,6 +37,15 @@ namespace AbstractJewelryShopView
                     comboBoxJewel.DisplayMember = "JewelName";
                     comboBoxJewel.ValueMember = "Id";
                     comboBoxJewel.SelectedItem = null;
+                }
+
+                var listClients = _clientLogic.Read(null);
+                foreach (var component in listClients)
+                {
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listClients;
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -82,11 +94,17 @@ namespace AbstractJewelryShopView
                 MessageBox.Show("Выберите украшение", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 _orderLogic.CreateOrder(new CreateOrderBindingModel
                 {
                     JewelId = Convert.ToInt32(comboBoxJewel.SelectedValue),
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
