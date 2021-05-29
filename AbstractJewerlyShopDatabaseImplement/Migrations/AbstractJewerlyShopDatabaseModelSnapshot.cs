@@ -125,6 +125,33 @@ namespace AbstractJewerlyShopDatabaseImplement.Migrations
                     b.ToTable("JewelComponents");
                 });
 
+            modelBuilder.Entity("AbstractJewerlyShopDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.Property<string>("MessageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("MessageInfoes");
+                });
+
             modelBuilder.Entity("AbstractJewerlyShopDatabaseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -180,6 +207,13 @@ namespace AbstractJewerlyShopDatabaseImplement.Migrations
                         .HasForeignKey("JewelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AbstractJewerlyShopDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.HasOne("AbstractJewerlyShopDatabaseImplement.Models.Client", "Client")
+                        .WithMany("MessageInfo")
+                        .HasForeignKey("ClientId");
                 });
 
             modelBuilder.Entity("AbstractJewerlyShopDatabaseImplement.Models.Order", b =>
