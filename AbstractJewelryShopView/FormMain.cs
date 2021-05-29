@@ -17,12 +17,15 @@ namespace AbstractJewelryShopView
 
         private readonly WorkModeling _workModeling;
 
-        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic, WorkModeling workModeling)
+        private readonly BackUpAbstractLogic _backUpAbstractLogic;
+
+        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic, WorkModeling workModeling, BackUpAbstractLogic backUpAbstractLogic)
         {
             InitializeComponent();
             _orderLogic = orderLogic;
             _reportLogic = reportLogic;
             _workModeling = workModeling;
+            _backUpAbstractLogic = backUpAbstractLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -34,23 +37,7 @@ namespace AbstractJewelryShopView
         {
             try
             {
-                var listOfOrder = _orderLogic.Read(null);
-                if (listOfOrder != null)
-                {
-                    dataGridView.DataSource = listOfOrder;
-                    dataGridView.Columns[0].Visible = false;//ID
-                    dataGridView.Columns[1].Visible = false;//ID украшения
-                    dataGridView.Columns[2].Visible = true;
-                    dataGridView.Columns[3].Visible = false;//ID клиента
-                    dataGridView.Columns[4].Visible = true;
-                    dataGridView.Columns[5].Visible = false;//ID исполнителя
-                    dataGridView.Columns[6].Visible = true;
-                    dataGridView.Columns[7].Visible = true;
-                    dataGridView.Columns[8].Visible = true;
-                    dataGridView.Columns[9].Visible = true;
-                    dataGridView.Columns[8].Visible = true;
-                    dataGridView.Columns[9].Visible = true;
-                }
+                Program.ConfigGrid(_orderLogic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {
@@ -148,6 +135,26 @@ namespace AbstractJewelryShopView
         {
             var form = Container.Resolve<FormMails>();
             form.ShowDialog();
+        }
+
+        private void создатьБекапToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_backUpAbstractLogic != null)
+                {
+                    var fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        _backUpAbstractLogic.CreateArchive(fbd.SelectedPath);
+                        MessageBox.Show("Бекап создан", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

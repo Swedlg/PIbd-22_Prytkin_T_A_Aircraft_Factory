@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using AbstractJewelryShopBusinessLogic.Attributes;
 
 namespace AbstractJewelryShopBusinessLogic.ViewModels
 {
@@ -7,9 +7,10 @@ namespace AbstractJewelryShopBusinessLogic.ViewModels
     /// </summary>
     public class ComponentViewModel
     {
+        [Column(title: "Номер", width: 100, visible: false)]
         public int Id { get; set; }
 
-        [DisplayName("Название компонента")]
+        [Column(title: "Название компонента", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ComponentName { get; set; }
     }
 }
