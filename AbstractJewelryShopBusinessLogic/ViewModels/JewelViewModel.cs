@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using AbstractJewelryShopBusinessLogic.Attributes;
 
 namespace AbstractJewelryShopBusinessLogic.ViewModels
 {
@@ -11,14 +12,15 @@ namespace AbstractJewelryShopBusinessLogic.ViewModels
     public class JewelViewModel
     {
         [DataMember]
+        [Column(title: "Номер", width: 100, visible: false)]
         public int? Id { get; set; }
 
         [DataMember]
-        [DisplayName("Название украшения")]
+        [Column(title: "Название украшения", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string JewelName { get; set; }
 
         [DataMember]
-        [DisplayName("Цена")]
+        [Column(title: "Цена", width: 100)]
         public decimal Price { get; set; }
 
         [DataMember]
