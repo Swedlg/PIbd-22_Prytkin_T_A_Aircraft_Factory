@@ -1,6 +1,7 @@
 ﻿using AbstractJewelryShopBusinessLogic.BindingModels;
 using AbstractJewelryShopBusinessLogic.Interfaces;
 using AbstractJewelryShopBusinessLogic.ViewModels;
+using AbstractJewelryShopBusinessLogic.Enums;
 using AbstractJewerlyShopFileImplement.Models;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,15 @@ namespace AbstractJewerlyShopFileImplement.Implements
                 return null;
             }
             return source.Orders
-                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate == model.DateCreate) ||
-                (model.DateFrom.HasValue && model.DateTo.HasValue
-                && rec.DateCreate.Date >= model.DateFrom.Value.Date
-                && rec.DateCreate.Date <= model.DateTo.Value.Date))
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue &&
+                    rec.DateCreate.Date == model.DateCreate.Date) ||
+                    (model.DateFrom.HasValue && model.DateTo.HasValue &&
+                    rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <=
+                    model.DateTo.Value.Date) ||
+                    (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+                    (model.FreeOrders.HasValue && model.FreeOrders.Value && rec.Status == OrderStatus.Принят) ||
+                    (model.ImplementerId.HasValue && rec.ImplementerId ==
+                    model.ImplementerId && rec.Status == OrderStatus.Выполняется))
                 .Select(CreateModel).ToList();
         }
 
@@ -86,6 +92,7 @@ namespace AbstractJewerlyShopFileImplement.Implements
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
+            order.ImplementerId = model.ImplementerId.Value;
             return order;
         }
 
@@ -99,6 +106,8 @@ namespace AbstractJewerlyShopFileImplement.Implements
                 JewelName = source.Jewels.FirstOrDefault(rec => rec.Id == order.JewelId)?.JewelName,
                 ClientId = order.ClientId,
                 ClientFIO = source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId)?.ClientFIO,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = source.Implementers.FirstOrDefault(rec => rec.Id == order.ImplementerId)?.ImplementerFIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

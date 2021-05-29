@@ -1,6 +1,7 @@
 ﻿using AbstractJewelryShopBusinessLogic.BindingModels;
 using AbstractJewelryShopBusinessLogic.Interfaces;
 using AbstractJewelryShopBusinessLogic.ViewModels;
+using AbstractJewelryShopBusinessLogic.Enums;
 using AbstractJewelryShopListImplement.Models;
 using System;
 using System.Collections.Generic;
@@ -38,8 +39,12 @@ namespace AbstractJewelryShopListImplement.Implements
                 if ((!model.DateFrom.HasValue && !model.DateTo.HasValue &&
                     order.DateCreate.Date == model.DateCreate.Date) ||
                     (model.DateFrom.HasValue && model.DateTo.HasValue &&
-                    order.DateCreate.Date >= model.DateFrom.Value.Date &&
-                    order.DateCreate.Date <= model.DateTo.Value.Date))
+                    order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <=
+                    model.DateTo.Value.Date) ||
+                    (model.ClientId.HasValue && order.ClientId == model.ClientId) ||
+                    (model.FreeOrders.HasValue && model.FreeOrders.Value && order.Status == OrderStatus.Принят) ||
+                    (model.ImplementerId.HasValue && order.ImplementerId ==
+                    model.ImplementerId && order.Status == OrderStatus.Выполняется))
                 {
                     result.Add(CreateModel(order));
                 }
@@ -110,6 +115,7 @@ namespace AbstractJewelryShopListImplement.Implements
         {
             order.JewelId = model.JewelId;
             order.ClientId = (int)model.ClientId;
+            order.ImplementerId = model.ImplementerId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -138,13 +144,24 @@ namespace AbstractJewelryShopListImplement.Implements
                 }
             }
 
+            string ImplementerFIO = null;
+            foreach (var implementer in source.Implementers)
+            {
+                if (implementer.Id == order.JewelId)
+                {
+                    ImplementerFIO = implementer.ImplementerFIO;
+                }
+            }
+
             return new OrderViewModel
             {
                 Id = order.Id,
                 JewelId = order.JewelId,
                 JewelName = jewelName,
-                ClientId = order.ClientId,
+                ClientId = order.ClientId,       
                 ClientFIO = clientFIO,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = ImplementerFIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

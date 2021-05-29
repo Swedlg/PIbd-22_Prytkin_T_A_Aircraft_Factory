@@ -59,6 +59,28 @@ namespace AbstractJewerlyShopDatabaseImplement.Migrations
                     b.ToTable("Components");
                 });
 
+            modelBuilder.Entity("AbstractJewerlyShopDatabaseImplement.Models.Implementer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImplementerFIO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PauseTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkingTime")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Implementers");
+                });
+
             modelBuilder.Entity("AbstractJewerlyShopDatabaseImplement.Models.Jewel", b =>
                 {
                     b.Property<int?>("Id")
@@ -122,6 +144,9 @@ namespace AbstractJewerlyShopDatabaseImplement.Migrations
                     b.Property<DateTime?>("DateImplement")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ImplementerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("JewelId")
                         .HasColumnType("int");
 
@@ -134,6 +159,8 @@ namespace AbstractJewerlyShopDatabaseImplement.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("ImplementerId");
 
                     b.HasIndex("JewelId");
 
@@ -162,6 +189,10 @@ namespace AbstractJewerlyShopDatabaseImplement.Migrations
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("AbstractJewerlyShopDatabaseImplement.Models.Implementer", "Implementer")
+                        .WithMany("Order")
+                        .HasForeignKey("ImplementerId");
 
                     b.HasOne("AbstractJewerlyShopDatabaseImplement.Models.Jewel", "Jewel")
                         .WithMany("Order")

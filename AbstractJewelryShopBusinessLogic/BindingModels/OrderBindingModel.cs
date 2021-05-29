@@ -14,6 +14,8 @@ namespace AbstractJewelryShopBusinessLogic.BindingModels
 
         public int JewelId { get; set; }
 
+        public int? ImplementerId { get; set; }
+
         public int Count { get; set; }
 
         public decimal Sum { get; set; }
@@ -27,5 +29,7 @@ namespace AbstractJewelryShopBusinessLogic.BindingModels
         public DateTime? DateFrom { get; set; }
 
         public DateTime? DateTo { get; set; }
+
+        public bool? FreeOrders { get; set; }
     }
 }
