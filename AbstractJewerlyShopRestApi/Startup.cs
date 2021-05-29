@@ -1,6 +1,7 @@
 using AbstractJewelryShopBusinessLogic.BusinessLogics;
 using AbstractJewelryShopBusinessLogic.Interfaces;
 using AbstractJewerlyShopDatabaseImplement.Implements;
+using AbstractJewelryShopBusinessLogic.HelperModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,9 +26,18 @@ namespace AbstractJewerlyShopRestApi
             services.AddTransient<IClientStorage, ClientStorage>();
             services.AddTransient<IOrderStorage, OrderStorage>();
             services.AddTransient<IJewelStorage, JewelStorage>();
+            services.AddTransient<IMessageInfoStorage, MessageInfoStorage>();
             services.AddTransient<OrderLogic>();
             services.AddTransient<ClientLogic>();
             services.AddTransient<JewelLogic>();
+            services.AddTransient<MailLogic>();
+            MailLogic.MailConfig(new MailConfig
+            {
+                SmtpClientHost = "smtp.gmail.com",
+                SmtpClientPort = 587,
+                MailLogin = "randomnameforlab@gmail.com",
+                MailPassword = "nepassword123",
+            });
             services.AddControllers().AddNewtonsoftJson();
         }
 

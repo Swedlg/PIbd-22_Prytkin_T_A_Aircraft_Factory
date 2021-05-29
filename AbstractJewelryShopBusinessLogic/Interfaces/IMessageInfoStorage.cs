@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AbstractJewelryShopBusinessLogic.Interfaces
 {
-    interface IMessageInfoStorage
+    public interface IMessageInfoStorage
     {
         List<MessageInfoViewModel> GetFullList();
 

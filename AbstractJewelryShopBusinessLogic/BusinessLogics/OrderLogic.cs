@@ -2,6 +2,7 @@
 using AbstractJewelryShopBusinessLogic.Enums;
 using AbstractJewelryShopBusinessLogic.Interfaces;
 using AbstractJewelryShopBusinessLogic.ViewModels;
+using AbstractJewelryShopBusinessLogic.HelperModels;
 using System;
 using System.Collections.Generic;
 
@@ -13,9 +14,12 @@ namespace AbstractJewelryShopBusinessLogic.BusinessLogics
 
         private readonly IOrderStorage _orderStorage;
 
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IClientStorage _clientStorage;
+
+        public OrderLogic(IOrderStorage orderStorage, IClientStorage clientStorage)
         {
             _orderStorage = orderStorage;
+            _clientStorage = clientStorage;
         }
 
         public List<OrderViewModel> Read(OrderBindingModel model)
@@ -41,6 +45,13 @@ namespace AbstractJewelryShopBusinessLogic.BusinessLogics
                 DateCreate = DateTime.Now,
                 Status = OrderStatus.Принят,
                 ClientId = model.ClientId
+            });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MailAddress = _clientStorage.GetElement(new ClientBindingModel { Id = model.ClientId })?.Email,
+                Subject = $"Новый заказ",
+                Text = $"Заказ от {DateTime.Now} на сумму {model.Sum:N2} принят."
             });
         }
 
@@ -73,6 +84,13 @@ namespace AbstractJewelryShopBusinessLogic.BusinessLogics
                     DateImplement = DateTime.Now,
                     Status = OrderStatus.Выполняется
                 });
+
+                MailLogic.MailSendAsync(new MailSendInfo
+                {
+                    MailAddress = _clientStorage.GetElement(new ClientBindingModel { Id = order.ClientId })?.Email,
+                    Subject = $"Заказ №{order.Id}",
+                    Text = $"Заказ №{order.Id} передан в работу."
+                });
             }
         }
 
@@ -99,6 +117,16 @@ namespace AbstractJewelryShopBusinessLogic.BusinessLogics
                 ClientId = order.ClientId,
                 ImplementerId = model.ImplementerId
             });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MailAddress = _clientStorage.GetElement(new ClientBindingModel
+                {
+                    Id = order.ClientId
+                })?.Email,
+                Subject = $"Заказ №{order.Id}",
+                Text = $"Заказ №{order.Id} выполнен."
+            });
         }
 
         public void PayOrder(ChangeStatusBindingModel model)
@@ -122,6 +150,16 @@ namespace AbstractJewelryShopBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен,
                 ClientId = order.ClientId
+            });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MailAddress = _clientStorage.GetElement(new ClientBindingModel
+                {
+                    Id = order.ClientId
+                })?.Email,
+                Subject = $"Заказ №{order.Id}",
+                Text = $"Заказ №{order.Id} оплачен."
             });
         }
     }

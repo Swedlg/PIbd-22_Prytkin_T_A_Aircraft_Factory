@@ -1,10 +1,13 @@
 ﻿using AbstractJewelryShopBusinessLogic.BusinessLogics;
 using AbstractJewelryShopBusinessLogic.Interfaces;
+using AbstractJewelryShopBusinessLogic.HelperModels;
 using AbstractJewerlyShopDatabaseImplement.Implements;
 using System;
 using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
+using System.Threading;
+using System.Configuration;
 
 namespace AbstractJewelryShopView
 {
@@ -17,6 +20,23 @@ namespace AbstractJewelryShopView
         static void Main()
         {
             var container = BuildUnityContainer();
+
+            MailLogic.MailConfig(new MailConfig
+            {
+                SmtpClientHost = ConfigurationManager.AppSettings["SmtpClientHost"],
+                SmtpClientPort = Convert.ToInt32(ConfigurationManager.AppSettings["SmtpClientPort"]),
+                MailLogin = ConfigurationManager.AppSettings["MailLogin"],
+                MailPassword = ConfigurationManager.AppSettings["MailPassword"],
+            });
+            // создаем таймер
+            var timer = new System.Threading.Timer(new TimerCallback(MailCheck), new MailCheckInfo
+            {
+                PopHost = ConfigurationManager.AppSettings["PopHost"],
+                PopPort = Convert.ToInt32(ConfigurationManager.AppSettings["PopPort"]),
+                MessageStorage = container.Resolve<IMessageInfoStorage>(),
+                ClientStorage = container.Resolve<IClientStorage>()
+            }, 0, 100000);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(container.Resolve<FormMain>());
@@ -30,13 +50,20 @@ namespace AbstractJewelryShopView
             currentContainer.RegisterType<IJewelStorage, JewelStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IClientStorage, ClientStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IImplementerStorage, ImplementerStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMessageInfoStorage, MessageInfoStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<JewelLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ClientLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ImplementerLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<MailLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
+        }
+
+        private static void MailCheck(object obj)
+        {
+            MailLogic.MailCheck((MailCheckInfo)obj);
         }
     }
 }

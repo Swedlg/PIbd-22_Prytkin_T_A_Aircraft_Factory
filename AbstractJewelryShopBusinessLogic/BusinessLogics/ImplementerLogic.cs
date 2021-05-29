@@ -30,24 +30,24 @@ namespace AbstractJewelryShopBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(ImplementerBindingModel model)
         {
-            var implementer = _jewelStorage.GetElement(new JewelBindingModel
+            var implementer = _implementerStorage.GetElement(new ImplementerBindingModel
             {
                 Id = model.Id,
-                JewelName = model.JewelName,
-                Price = model.Price,
-                JewelComponents = model.JewelComponents,
+                ImplementerFIO = model.ImplementerFIO,
+                PauseTime = model.PauseTime,
+                WorkingTime = model.WorkingTime,
             });
             if (implementer != null && implementer.Id != model.Id)
             {
-                throw new Exception("Уже есть украшение с таким названием");
+                throw new Exception("Уже есть исполнитель с таким названием");
             }
             if (model.Id.HasValue)
             {
-                _jewelStorage.Update(model);
+                _implementerStorage.Update(model);
             }
             else
             {
-                _jewelStorage.Insert(model);
+                _implementerStorage.Insert(model);
             }
         }
 
